@@ -1,0 +1,41 @@
+
+<div ng-show="bookRoom">
+Room Type: <input type="text" ng-model="roomType">
+Room Id :  <input type="text" ng-model="referenceRoom">
+<button ng-click="joinRoom()">Join Room</button>
+</div>
+
+<div ng-show="roomDetails">
+	<div class"nextNo>
+	{{NextNo}}
+	</div>
+	<button ng-click="nextNo()">Next Number</button>
+	
+	<div>
+		{{completedNos}}
+	</div>
+	<div>
+		<li ng-repeat="row in rows">
+		<div ng-repeat="no in row">
+		{{no}}
+		</div>
+	  	<br/>
+	  </li>
+	</div>
+	<div>
+		Press result when completed|<br/>
+		<button ng-disabled="fast5But" ng-click="result('fast5')">FAST 5</button>
+		<button ng-disabled="line1But" ng-click="result('line1')">Line1</button>
+		<button ng-disabled="lLine2But" ng-click="result('line2')">Line2</button>
+		<button ng-disabled="line3But" ng-click="result('line3')">Line3</button>
+		<button ng-disabled="fllBut"ng-click="result('full')">FULL</button>
+		
+	</div>
+	<div class"Results>
+		Fast5 : {{results.fast5}} <br/>
+		Line1 : {{results.line1}} <br/>
+		Line2 : {{results.line2}} <br/>
+		Line3 : {{results.line3}}<br/>
+		Full : {{results.full}}<br/>
+	</div>
+</div>

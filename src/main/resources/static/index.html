@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<style>
+</style>
+<body>
+
+<div ng-app="myApp" ng-controller="housieController"> 
+<h1 class="Heading1">Housie <div class="customerName">{{customerName}}</div>
+<div class="tab">
+  <button  ng-show="loginTab" class="tablinks" ng-click="loginTabClick()">Login</button>
+  <button ng-show="registerTab" class="tablinks" ng-click="registerTabClick()">Register</button>
+  <button ng-show="generateTicketTab" class="tablinks" ng-click="generateTicketTabClick()">GenerateTicket</button>
+  <button ng-show="joinRoomTab" class="tablinks" ng-click="joinRoomTabClick()">Join Room</button>
+</div>
+
+<div ng-show="loginDetails" class="tabcontent">
+	<h3>Login</h3>
+	
+	User Name:<input type="text" ng-model="userName"><br/><br/>
+	Password :<input type="password" ng-model="password">
+	
+	<div>Status:{{loginResponse}}</div>
+	<button ng-click="login()">Login</button>
+</div>
+
+<div ng-show="registrationDetails" class="tabcontent">
+	<h3>Registration</h3>
+	<form  novalidate>
+	First Name: <input type="text" ng-model="customerFirstName"><br>
+	LastName:<input type="text" ng-model="customerLastName"><br/>
+	Middle Name:<input type="text" ng-model="customerMiddleName">
+	Password:<input type="text" ng-model="customePassword">
+	Email:<input type="text" ng-model="customerEmailId">
+	Phone:<input type="text" ng-model="customerMobileNo">
+	<div>Status:{{registerResponse}}</div>
+	<button ng-click="register()">Register</button>
+</form>
+</div>
+
+<div ng-show="generateTicketDetails" class="tabcontent">
+	No Of tickets : <input type="text" ng-model="noOfTicketsToGenerate">
+	<button ng-click="generateTicket()">Generate Ticket</button>
+	<div>Status::{{responseGenerateTickets}}</div>
+</div>
+
+<div ng-show="joinRoomDetails" class="tabcontent">
+	<div ng-show="roomSearch">
+		Room Type:<select ng-model="roomType" ng-options="x for x in roomTypes"> 
+		Room Id :  <input type="text" ng-model="referenceRoom"><br/>
+		<div>Status:{{roomSearchStatus}}</div>
+		<button ng-click="joinRoom()">Join Room</button>
+	</div>
+
+	<div ng-show="roomDetails">
+		<div style="margin-left: 20px;"><h1>Joined into Room : RM{{roomId}}SM</h1><br/></div>
+		<div class="nextNo">
+			<div class="container">
+			    <div class="row">
+			        <div class="col-xs-6">
+			            Current number
+			        </div>
+			        <div style="background-color: orangered;width: 5%;margin-left: -181px;" class="col-xs-6">
+			            {{nextNo}}
+			        </div>
+			    </div>
+			</div>
+		</div>
+		<button ng-show="startGameBut" ng-click="startGame()">Start Game</button>
+		<div css="gameStatus">{{resultRes}}</div>
+		<div class="completedNos">
+			Completed Numbers:<br/>{{completedNos}}
+		</div><br/><br/>
+		<div>
+			<table class="ticketTable">
+			     <tr ng-repeat="row in ticketData">
+			         <td ng-repeat="one in row.split('|')  track by $index" ng-click="bgColourSelectNo($event, one)" ng-class="bgclr">
+			         	<div>{{one === "null" ? "  " : one}}</div>
+			         </td>
+			     </tr>
+		    </table>
+		  	<br/>
+		</div>
+		<div style="margin-left: 40%;">
+			Press result when completed<br/><br/>
+			<button ng-disabled="fast5But" ng-click="result('FAST5')">FAST 5</button>
+			<button ng-disabled="line1But" ng-click="result('LINE1')">Line1</button>
+			<button ng-disabled="lLine2But" ng-click="result('LINE2')">Line2</button>
+			<button ng-disabled="line3But" ng-click="result('LINE3')">Line3</button>
+			<button ng-disabled="fllBut"ng-click="result('FULL')">FULL</button>
+			
+		</div>
+		<div class"Results>Results:<br/><br/>
+			Fast5 : {{fast5}} <br/>
+			Line1 : {{line1}} <br/>
+			Line2 : {{line2}} <br/>
+			Line3 : {{line3}}<br/>
+			Full : {{full}}<br/>
+		</div><br/><br/>
+			<button class="stopGame" ng-click="stopGame()">STOP GAME</button>
+		
+	</div>
+
+</div>
+</div>
+<script src="/webjars/jquery/1.11.1/jquery.js"></script>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/angularjs/1.4.9/angular.js"></script>
+<script src="/webjars/angularjs/1.4.9/angular-resource.js"></script>
+<script src="/webjars/angularjs/1.4.9/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.css">
+<link rel="stylesheet" href="css/app.css">
+
+</body>
+</html>
